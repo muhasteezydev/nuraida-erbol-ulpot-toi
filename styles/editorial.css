@@ -210,8 +210,7 @@ img,
 }
 
 #hero-names-stacked {
-  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
 }
 
 #hero-names-stacked span {
@@ -375,8 +374,7 @@ img,
 }
 
 .share-cover-names {
-  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
 }
 
 .share-cover-names span {
@@ -521,8 +519,7 @@ img,
 
 .envelope-gate__names {
   margin: 16px auto 0;
-  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.45rem, 6.8vw, 2.5rem);
   font-weight: 400;
   line-height: 1.15;
