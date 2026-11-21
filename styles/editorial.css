@@ -585,13 +585,13 @@ img,
   padding: 10px 24px;
   border: 0;
   background: transparent;
-  font-family: 'Alexandra Script', 'Reference Antarctic', 'Reference Carolina', 'Forum', Georgia, serif;
-  font-size: 2.35rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
   text-transform: none;
-  color: #2A2A2A;
+  color: #1A1A1A;
   cursor: pointer;
   transition: opacity 180ms ease;
 }

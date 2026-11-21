@@ -31,7 +31,7 @@ const WEDDING_CONFIG = {
     kg: {
       pageTitle: 'Erbol & Nuraida — 03.12.2026 | Тойго чакыруу',
       envelopeEyebrow: 'Чакыруу',
-      envelopeCtaTop: 'Басыңыз',
+      envelopeCtaTop: 'Чакырууну ачуу үчүн басыңыз',
       heroTopLabel: 'ТОЙГО ЧАКЫРУУ',
       heroEventCategory: 'ҮЛПӨТ ТОЙ',
       heroMonthFull: 'ДЕКАБРЬ',
@@ -135,7 +135,7 @@ const WEDDING_CONFIG = {
     ru: {
       pageTitle: 'Erbol & Nuraida — 03.12.2026 | Приглашение на свадьбу',
       envelopeEyebrow: 'Приглашение',
-      envelopeCtaTop: 'Нажмите',
+      envelopeCtaTop: 'Нажмите, чтобы открыть приглашение',
       heroTopLabel: 'ПРИГЛАШЕНИЕ НА СВАДЬБУ',
       heroEventCategory: 'СВАДЕБНОЕ ТОРЖЕСТВО',
       heroMonthFull: 'ДЕКАБРЯ',
