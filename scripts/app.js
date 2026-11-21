@@ -36,6 +36,9 @@ const WEDDING_CONFIG = {
       heroMonthFull: 'ДЕКАБРЬ',
       heroBottomLabel: '2026 • СААТ 18:00',
       heroDateFull: '03 ДЕКАБРЬ 2026',
+      heroEyebrow: 'ҮЛПӨТ ТОЙ',
+      heroMonth: 'ДЕКАБРЬ',
+      heroYearTime: '2026 · СААТ 18:00',
       heroCity: 'Бишкек',
       welcomeEyebrow: 'СИЗДЕР ҮЧҮН ӨЗГӨЧӨ ЧАКЫРУУ',
       welcomeHeading: 'УРМАТТУУ',
@@ -104,7 +107,7 @@ const WEDDING_CONFIG = {
       wishesSwipeHint: 'Башка куттуктоолорду окуу үчүн капталга сүрүңүз.',
       wishesEmptyText: 'Азырынча тилектер жок — алгачкы каалоону сиз калтырыңыз!',
       loveNote1:
-        'Биз үчүн эң башкы белек — сиздердин катышууңуздар жана жылуу батаңыздар. Бул маанилүү күнү баарыңыздарды чоң кубаныч менен күтөбүз.',
+        'Биз үчүн эң башкы белек — сиздердин катышууңуздар жана жылуу батаңыздар. Бул маанилүү күндө баарыңыздарды чоң кубаныч менен күтөбүз.',
       loveSignoff: 'урматтоо менен,',
       loveNamesScript: 'Эрбол жана Нураида',
       shareHeading: 'ЧАКЫРУУНУ',
@@ -140,6 +143,9 @@ const WEDDING_CONFIG = {
       heroMonthFull: 'ДЕКАБРЯ',
       heroBottomLabel: '2026 • В 18:00',
       heroDateFull: '3 ДЕКАБРЯ 2026',
+      heroEyebrow: 'СВАДЬБА',
+      heroMonth: 'ДЕКАБРЯ',
+      heroYearTime: '2026 · В 18:00',
       heroCity: 'Бишкек',
       welcomeEyebrow: 'ОСОБОЕ ПРИГЛАШЕНИЕ ДЛЯ ВАС',
       welcomeHeading: 'ДОРОГИЕ',
@@ -287,7 +293,9 @@ const WEDDING_CONFIG = {
     setText('envelope-cta-top', t.envelopeCtaTop);
 
     // Hero & Static Config Values
-    setText('hero-date-full', t.heroDateFull);
+    setText('hero-eyebrow', t.heroEyebrow);
+    setText('hero-month', t.heroMonth);
+    setText('hero-year-time', t.heroYearTime);
 
     const twoGisBtn = document.getElementById('location-2gis-btn');
     if (twoGisBtn) twoGisBtn.href = WEDDING_CONFIG.location.twoGisUrl;
@@ -372,6 +380,7 @@ const WEDDING_CONFIG = {
     setText('back-to-top-btn', t.backToTopBtn);
 
     updateSocialShareLinks();
+    updateStoryPreviews();
 
     if (lastSubmission) {
       renderConfirmationSummary(lastSubmission);
@@ -856,112 +865,172 @@ const WEDDING_CONFIG = {
   }
 
   function drawCoupleTitle(ctx, centerX, y, sizePx) {
-    const serifFont = `${sizePx}px "The Seasons", Forum, "Cormorant Garamond", Georgia, serif`;
-    const ampFont = `italic ${Math.round(sizePx * 1.06)}px "Seasons Italic", "The Seasons", "Cormorant Garamond", Georgia, serif`;
-
-    ctx.font = serifFont;
-    const leftW = ctx.measureText('ERBOL ').width;
+    const mainFont = sizePx + 'px "The Seasons", Forum, Georgia, serif';
+    const ampFont = 'italic ' + Math.round(sizePx * .68) + 'px "Seasons Italic", Georgia, serif';
+    ctx.save();
+    ctx.font = mainFont;
+    const leftWidth = ctx.measureText('ERBOL').width;
+    const rightWidth = ctx.measureText('NURAIDA').width;
     ctx.font = ampFont;
-    const ampW = ctx.measureText('&').width;
-    ctx.font = serifFont;
-    const rightW = ctx.measureText(' NURAIDA').width;
-
-    const totalW = leftW + ampW + rightW;
-    let cursorX = centerX - totalW / 2;
-
-    const prevAlign = ctx.textAlign;
+    const ampWidth = ctx.measureText('&').width;
+    const gap = sizePx * .24;
+    let x = centerX - (leftWidth + ampWidth + rightWidth + gap * 2) / 2;
     ctx.textAlign = 'left';
-
-    ctx.font = serifFont;
-    ctx.fillText('ERBOL ', cursorX, y);
-    cursorX += leftW;
-
+    ctx.font = mainFont;
+    ctx.fillText('ERBOL', x, y);
+    x += leftWidth + gap;
     ctx.font = ampFont;
-    ctx.fillText('&', cursorX, y);
-    cursorX += ampW;
+    ctx.fillText('&', x, y - sizePx * .05);
+    x += ampWidth + gap;
+    ctx.font = mainFont;
+    ctx.fillText('NURAIDA', x, y);
+    ctx.restore();
+  }
 
-    ctx.font = serifFont;
-    ctx.fillText(' NURAIDA', cursorX, y);
-    ctx.textAlign = prevAlign;
+  const storyImageCache = new Map();
+
+  function loadStoryImage(src) {
+    if (!storyImageCache.has(src)) {
+      storyImageCache.set(src, new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = () => { storyImageCache.delete(src); reject(new Error('Unable to load story image: ' + src)); };
+        image.src = src;
+      }));
+    }
+    return storyImageCache.get(src);
+  }
+
+  function drawStoryPhoto(ctx, image, x, y, width, height, positionY = .5) {
+    const scale = Math.max(width / image.width, height / image.height);
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, width, height);
+    ctx.clip();
+    ctx.filter = 'grayscale(100%) contrast(1.06)';
+    ctx.drawImage(image, x + (width - image.width * scale) / 2, y + (height - image.height * scale) * positionY, image.width * scale, image.height * scale);
+    ctx.restore();
+  }
+
+  function drawStoryLily(ctx, image, x, y, width, angle = 0) {
+    ctx.save();
+    ctx.translate(x + width / 2, y + width / 2);
+    ctx.rotate(angle * Math.PI / 180);
+    ctx.filter = 'saturate(.4) contrast(1.06)';
+    ctx.shadowColor = 'rgba(35,33,30,.18)';
+    ctx.shadowBlur = 15;
+    ctx.shadowOffsetY = 12;
+    ctx.drawImage(image, -width / 2, -width / 2, width, width * image.height / image.width);
+    ctx.restore();
+  }
+
+  function drawStackedStoryNames(ctx, y, size) {
+    drawCoupleTitle(ctx, 540, y, size);
+  }
+
+  async function renderStoryCard(kind, lang) {
+    const t = WEDDING_CONFIG.i18n[lang] || WEDDING_CONFIG.i18n.kg;
+    const cover = kind === 'cover';
+    await Promise.all([
+      document.fonts.load('140px "The Seasons"'),
+      document.fonts.load('italic 80px "Seasons Italic"'),
+      document.fonts.load('48px Forum'),
+      document.fonts.load('48px "Cormorant Garamond"'),
+    ]);
+    const photo = await loadStoryImage(cover ? 'assets/photos/photo-1.webp' : 'assets/photos/photo-3.webp');
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1920;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Canvas unavailable');
+    ctx.textAlign = 'center';
+    if (cover) {
+      ctx.fillStyle = '#141414';
+      ctx.fillRect(0, 0, 1080, 1920);
+      // Same enlarged, raised crop as the updated hero; faces sit above the names.
+      const frameH = 1920 * 1.18 * 1.06;
+      const frameY = -1920 * .36 - 1920 * 1.18 * .06 * .55;
+      drawStoryPhoto(ctx, photo, -32, frameY, 1144, frameH, .62);
+      const shade = ctx.createLinearGradient(0, 0, 0, 1920);
+      shade.addColorStop(0, 'rgba(8,8,8,.30)');
+      shade.addColorStop(.26, 'rgba(8,8,8,.02)');
+      shade.addColorStop(.44, 'rgba(8,8,8,.20)');
+      shade.addColorStop(.65, 'rgba(20,20,20,.86)');
+      shade.addColorStop(.82, '#141414');
+      shade.addColorStop(1, '#141414');
+      ctx.fillStyle = shade;
+      ctx.fillRect(0, 0, 1080, 1920);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '32px Forum, Georgia, serif';
+      ctx.fillText(t.heroEyebrow, 540, 830);
+      drawStackedStoryNames(ctx, 1110, 112);
+      ctx.font = '178px Forum, Georgia, serif';
+      ctx.fillText('03', 540, 1370);
+      ctx.font = '52px Forum, Georgia, serif';
+      ctx.fillText(t.heroMonth, 540, 1470);
+      ctx.font = '38px Forum, Georgia, serif';
+      ctx.fillText(t.heroYearTime, 540, 1560);
+    } else {
+      const [background, lilyTop, lilyBottom] = await Promise.all([
+        loadStoryImage('assets/photos/lily-entrance-background.webp'),
+        loadStoryImage('assets/photos/lily-corner-right-clean.webp'),
+        loadStoryImage('assets/photos/lily-corner-left.webp'),
+      ]);
+      ctx.fillStyle = '#F6F5F2';
+      ctx.fillRect(0, 0, 1080, 1920);
+      ctx.save();
+      ctx.globalAlpha = .18;
+      const bgScale = Math.max(1080 / background.width, 1920 / background.height);
+      ctx.drawImage(background, (1080 - background.width * bgScale) / 2, 0, background.width * bgScale, background.height * bgScale);
+      ctx.restore();
+      ctx.fillStyle = '#1A1A1A';
+      ctx.font = '34px Forum, Georgia, serif';
+      ctx.fillText(t.shareInviteTop, 540, 185);
+      ctx.font = '48px "Cormorant Garamond", Georgia, serif';
+      wrapCanvasText(ctx, t.shareInviteBody, 540, 325, 790, 58);
+      drawStoryPhoto(ctx, photo, 210, 610, 660, 880, .40);
+      drawStoryLily(ctx, lilyTop, 865, -85, 420, -16);
+      drawStoryLily(ctx, lilyBottom, -70, 1180, 460, -14);
+      ctx.fillStyle = '#1A1A1A';
+      drawCoupleTitle(ctx, 540, 1610, 76);
+      ctx.font = '44px Forum, Georgia, serif';
+      ctx.fillText(t.heroDateFull, 540, 1730);
+      ctx.font = '34px Forum, Georgia, serif';
+      ctx.fillText('18:00 · BELLAGIO PREMIUM', 540, 1800);
+    }
+    return canvas;
+  }
+
+  function updateStoryPreviews() {
+    const lang = currentLang;
+    ['cover', 'invite'].forEach((kind) => {
+      const target = document.getElementById('share-' + kind + '-canvas');
+      if (!target) return;
+      renderStoryCard(kind, lang).then((canvas) => {
+        if (lang !== currentLang) return;
+        target.getContext('2d').drawImage(canvas, 0, 0);
+      }).catch((error) => console.error('Story preview failed:', error));
+    });
   }
 
   async function downloadStoryCardImage() {
+    const kind = activeShareTab;
     const t = WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg;
-    const isCover = activeShareTab === 'cover';
-    const imgSrc = isCover ? 'assets/photos/photo-1.webp' : 'assets/photos/photo-3.webp';
-
     try {
-      if (document.fonts?.ready) await document.fonts.ready;
-    } catch (_) {}
-
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const W = 1080;
-      const H = 1920;
-      canvas.width = W;
-      canvas.height = H;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      // Draw object-cover B&W image matching preview crop
-      ctx.filter = 'grayscale(100%) contrast(1.06)';
-      const scale = Math.max(W / img.width, H / img.height);
-      const drawW = img.width * scale;
-      const drawH = img.height * scale;
-      const offsetX = (W - drawW) / 2;
-      const offsetY = (H - drawH) * (isCover ? 0.56 : 0.40);
-      ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-      ctx.filter = 'none';
-
-      // Dark editorial gradient scrim matching .share-card-scrim / .share-card-scrim-strong
-      const grad = ctx.createLinearGradient(0, 0, 0, H);
-      if (isCover) {
-        grad.addColorStop(0, 'rgba(8,8,8,0.24)');
-        grad.addColorStop(0.38, 'rgba(8,8,8,0.04)');
-        grad.addColorStop(0.64, 'rgba(8,8,8,0.68)');
-        grad.addColorStop(1, 'rgba(8,8,8,0.94)');
-      } else {
-        grad.addColorStop(0, 'rgba(10,10,10,0.62)');
-        grad.addColorStop(0.5, 'rgba(10,10,10,0.52)');
-        grad.addColorStop(1, 'rgba(10,10,10,0.82)');
-      }
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.textAlign = 'center';
-
-      if (isCover) {
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
-        ctx.shadowBlur = 22;
-        ctx.shadowOffsetY = 4;
-        drawCoupleTitle(ctx, W / 2, H - 250, 74);
-        ctx.font = '34px Forum, "Cormorant Garamond", Georgia, serif';
-        ctx.fillText(t.heroDateFull, W / 2, H - 175);
-        ctx.shadowColor = 'transparent';
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetY = 0;
-      } else {
-        ctx.font = '32px Forum, "Cormorant Garamond", Georgia, serif';
-        ctx.fillText(t.shareInviteTop, W / 2, 190);
-        drawCoupleTitle(ctx, W / 2, H / 2 - 60, 76);
-        ctx.font = '38px "Cormorant Garamond", Georgia, serif';
-        wrapCanvasText(ctx, t.shareInviteBody, W / 2, H / 2 + 50, W - 180, 52);
-        ctx.font = '36px Forum, "Cormorant Garamond", Georgia, serif';
-        ctx.fillText('03.12.2026 • 18:00', W / 2, H - 235);
-        ctx.font = '30px Forum, "Cormorant Garamond", Georgia, serif';
-        ctx.fillText('BELLAGIO PREMIUM', W / 2, H - 180);
-      }
-
+      const canvas = await renderStoryCard(kind, currentLang);
+      const blob = await new Promise((resolve, reject) => canvas.toBlob((result) => result ? resolve(result) : reject(new Error('Story export failed')), 'image/png'));
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.download = `erbol-nuraida-${activeShareTab}-03-12-2026.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.download = 'erbol-nuraida-' + kind + '-03-12-2026.png';
+      link.href = url;
+      document.body.appendChild(link);
       link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
       showToast(t.shareSavedToast);
-    };
-    img.src = imgSrc;
+    } catch (error) {
+      console.error('Story image download failed:', error);
+    }
   }
 
   function initShareSection() {
@@ -1269,6 +1338,44 @@ const WEDDING_CONFIG = {
     if (ctaBtn) ctaBtn.addEventListener('click', openInvitation);
   }
 
+  function initCornerLilies() {
+    const section = document.getElementById('welcome');
+    if (!section) return;
+    const showIfApproaching = () => {
+      const rect = section.getBoundingClientRect();
+      const visible = window.scrollY > 0 && rect.top < window.innerHeight * 0.80 && rect.bottom > 0;
+      section.classList.toggle('lilies-in-view', visible);
+    };
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(showIfApproaching, { rootMargin: '0px 0px -20% 0px', threshold: [0, 0.1, 0.2] });
+      observer.observe(section);
+    } else {
+      window.addEventListener('scroll', showIfApproaching, { passive: true });
+    }
+  }
+
+  function initClosingLilies() {
+    const flowers = document.querySelectorAll('.closing-lily');
+    const reveal = (flower) => flower.classList.add('is-closing-lily-visible');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && window.scrollY > 0) {
+            reveal(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+      flowers.forEach((flower) => observer.observe(flower));
+    } else {
+      const check = () => flowers.forEach((flower) => {
+        const rect = flower.getBoundingClientRect();
+        if (window.scrollY > 0 && rect.top < window.innerHeight * .88 && rect.bottom > 0) reveal(flower);
+      });
+      window.addEventListener('scroll', check, { passive: true });
+    }
+  }
+
   /* ------------------------------------------------------------------------
      INITIALIZE
      ------------------------------------------------------------------------ */
@@ -1295,5 +1402,7 @@ const WEDDING_CONFIG = {
     initWishesSection();
     initShareSection();
     initScrollReveal();
+    initCornerLilies();
+    initClosingLilies();
   });
 })();
