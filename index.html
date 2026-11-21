@@ -50,7 +50,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="styles/editorial.css?v=8" />
+  <link rel="stylesheet" href="styles/editorial.css?v=28" />
 </head>
 <body class="bg-white text-[#1A1A1A] font-body text-base antialiased">
 
@@ -120,32 +120,30 @@
           </div>
         </div>
 
-        <!-- Centered Reference-Style Names, Date & City -->
-        <div class="relative z-10 mt-auto mb-6 flex flex-col items-center">
-          <p id="hero-names-stacked" class="font-serif text-[clamp(1.5rem,7.6vw,2.65rem)] leading-[1.1] tracking-[0.03em] uppercase text-white hero-script-shadow whitespace-nowrap">
-            ERBOL <span class="font-body italic font-normal text-[1.06em] mx-1">&amp;</span> NURAIDA
+        <div class="hero-cover-copy relative z-10">
+          <p id="hero-eyebrow" class="hero-cover-eyebrow">ҮЛПӨТ ТОЙ</p>
+          <p id="hero-names-stacked" class="hero-cover-names">
+            <span class="hero-cover-name">Erbol</span>
+            <span class="hero-cover-amp">&amp;</span>
+            <span class="hero-cover-name">Nuraida</span>
           </p>
-
-          <p id="hero-date-full" class="mt-5 font-serif text-[clamp(1.15rem,4.6vw,1.35rem)] tracking-[0.22em] uppercase text-white hero-script-shadow">
-            03 ДЕКАБРЬ 2026
-          </p>
+          <div id="hero-date-full" class="hero-cover-date">
+            <span class="hero-cover-day">03</span>
+            <span id="hero-month" class="hero-cover-month">ДЕКАБРЬ</span>
+            <span id="hero-year-time" class="hero-cover-meta">2026 · СААТ 18:00</span>
+          </div>
         </div>
-
-        <div class="relative z-10 flex justify-center">
-          <a
-            href="#welcome"
-            aria-label="Төмөн жылдыруу"
-            class="hero-scroll-arrow inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 font-serif text-base text-white no-underline transition-opacity hover:opacity-75"
-          >
-            &#8595;
-          </a>
+        <div class="hero-cover-scroll relative z-10 flex justify-center">
+          <a href="#welcome" aria-label="Төмөн жылдыруу" class="hero-scroll-arrow inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 text-white no-underline">&#8595;</a>
         </div>
       </section>
 
       <!-- =================================================================
            2. БЛОК ПРИВЕТСТВИЯ (Monochrome Scalloped Invitation Card on #111111 Stage)
            ================================================================= -->
-      <section id="welcome" class="welcome-scallop-stage js-reveal px-6 py-11 text-center">
+      <section id="welcome" class="welcome-scallop-stage lily-corner-section js-reveal px-6 py-11 text-center">
+        <img class="welcome-lily welcome-lily--right" src="assets/photos/lily-corner-right-clean.webp" alt="" aria-hidden="true" width="1024" height="1024" loading="lazy" />
+        <img class="welcome-lily welcome-lily--left" src="assets/photos/lily-corner-double.webp" alt="" aria-hidden="true" width="1024" height="1024" loading="lazy" />
         <div class="max-w-[310px] mx-auto">
           <h1 class="flex flex-col items-center">
             <span id="welcome-heading" class="block font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
@@ -365,7 +363,7 @@
            ================================================================= -->
       <section id="wishes" class="js-reveal">
         <!-- Light Form Block -->
-        <div class="bg-[#F6F5F2] px-6 py-11">
+        <div class="wishes-floral-panel bg-[#F6F5F2] px-6 py-11">
           <div class="max-w-[310px] mx-auto">
             <div class="text-center mb-6">
               <h2 class="flex flex-col items-center">
@@ -474,10 +472,12 @@
       <!-- =================================================================
            7.5. ПРЕДПОСЛЕДНЯЯ СТРАНИЦА: «СҮЙҮҮ МЕНЕН» (LOVE SIGN-OFF WITH PHOTO 3)
            ================================================================= -->
-      <section id="love-closing" class="js-reveal bg-[#EAE8E2] px-6 py-11 text-center">
+      <section id="love-closing" class="closing-lily-section js-reveal bg-[#EAE8E2] px-6 py-11 text-center">
+        <img src="assets/photos/lily-corner-left.webp" class="closing-lily closing-lily--right" alt="" aria-hidden="true" width="1024" height="1024" loading="lazy" />
+        <img src="assets/photos/lily-corner-left.webp" class="closing-lily closing-lily--left" alt="" aria-hidden="true" width="1024" height="1024" loading="lazy" />
         <div class="max-w-[310px] mx-auto">
           <p id="love-note-1" class="font-body text-base leading-[1.46] text-[#1A1A1A]">
-            Биз үчүн эң башкы белек — сиздердин катышууңуздар жана жылуу батаңыздар. Бул маанилүү күнү баарыңыздарды чоң кубаныч менен күтөбүз.
+            Биз үчүн эң башкы белек — сиздердин катышууңуздар жана жылуу батаңыздар. Бул маанилүү күндө баарыңыздарды чоң кубаныч менен күтөбүз.
           </p>
 
           <div class="mt-7 max-w-[235px] mx-auto">
@@ -544,62 +544,11 @@
         <!-- 9:16 Story Preview Card -->
         <div class="mt-6 flex justify-center">
           <div id="share-card-preview" class="share-story-card relative w-[230px] aspect-[9/16] p-6 rounded-none border border-[#D8D5CE] overflow-hidden text-white select-none flex flex-col justify-between">
-            <!-- View 1: мукаба (Cover matching #hero) -->
-            <div id="share-view-cover" class="flex-1 flex flex-col items-center justify-end text-center">
-              <img
-                src="assets/photos/photo-1.webp"
-                alt="Erbol &amp; Nuraida Story Cover"
-                width="682"
-                height="1024"
-                loading="lazy"
-                decoding="async"
-                class="bw-photo absolute inset-0 w-full h-full object-cover object-[48%_56%]"
-              />
-              <div class="share-card-scrim absolute inset-0" aria-hidden="true"></div>
-
-              <div class="relative z-10 mt-auto mb-2 flex flex-col items-center">
-                <p class="share-cover-names text-[1.25rem] leading-[1.1] tracking-[0.04em] uppercase text-white hero-script-shadow whitespace-nowrap">
-                  ERBOL <span class="italic font-normal text-[1.06em] mx-0.5">&amp;</span> NURAIDA
-                </p>
-
-                <span id="share-cover-date" class="mt-2 font-serif text-xs tracking-[0.2em] uppercase text-white hero-script-shadow">
-                  03 ДЕКАБРЬ 2026
-                </span>
-              </div>
+            <div id="share-view-cover" class="share-canvas-view">
+              <canvas id="share-cover-canvas" width="1080" height="1920" role="img" aria-label="Erbol &amp; Nuraida — cover story"></canvas>
             </div>
-
-            <!-- View 2: Чакыруу (Invitation Card) -->
-            <div id="share-view-invite" class="hidden flex-1 flex flex-col items-center justify-between text-center">
-              <img
-                src="assets/photos/photo-3.webp"
-                alt="Erbol &amp; Nuraida Story Invitation"
-                width="682"
-                height="1024"
-                loading="lazy"
-                decoding="async"
-                class="bw-photo absolute inset-0 w-full h-full object-cover object-[46%_40%]"
-              />
-              <div class="share-card-scrim-strong absolute inset-0" aria-hidden="true"></div>
-
-              <div class="relative z-10 mt-1">
-                <span id="share-invite-top" class="block font-serif text-xs tracking-[0.18em] uppercase text-white">
-                  ҮЛПӨТ ТОЙ &bull; БИШКЕК
-                </span>
-              </div>
-
-              <div class="relative z-10 my-auto">
-                <p class="share-cover-names text-[1.25rem] leading-[1.1] tracking-[0.04em] uppercase text-white whitespace-nowrap">
-                  ERBOL <span class="italic font-normal text-[1.06em] mx-0.5">&amp;</span> NURAIDA
-                </p>
-                <p id="share-invite-body" class="mt-2 font-body text-xs leading-[1.5] text-white">
-                  Сиздерди биздин үлпөт тоюбуздун кадырлуу коногу болууга чакырабыз
-                </p>
-              </div>
-
-              <div class="relative z-10 flex flex-col items-center">
-                <span class="font-serif text-xs tracking-[0.18em] uppercase text-white">03.12.2026 &bull; 18:00</span>
-                <span class="mt-1 font-serif text-xs tracking-[0.14em] uppercase text-white">BELLAGIO PREMIUM</span>
-              </div>
+            <div id="share-view-invite" class="share-canvas-view hidden">
+              <canvas id="share-invite-canvas" width="1080" height="1920" role="img" aria-label="Erbol &amp; Nuraida — invitation story"></canvas>
             </div>
           </div>
         </div>
@@ -800,6 +749,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" defer></script>
   <script type="module" src="scripts/firebase-service.js?v=3"></script>
-  <script src="scripts/app.js?v=19" defer></script>
+  <script src="scripts/app.js?v=29" defer></script>
 </body>
 </html>
