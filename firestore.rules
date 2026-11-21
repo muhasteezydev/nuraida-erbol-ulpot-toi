@@ -1,0 +1,136 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Project: ayturgan-invitation
+// Auth model: Public wedding invitation (no guest authentication required)
+// Isolation path: invitations/erbol-nuraida-2026
+//
+// Document: invitations/{invitationId}
+//   - Container document itself is locked (read: false, write: false).
+//   - Only explicit subcollections under invitationId == 'erbol-nuraida-2026'
+//     are exposed below.
+//
+// Subcollection: invitations/erbol-nuraida-2026/rsvp
+// Document ID: {rsvpId} (browser-generated UUID/token string, length 8..64)
+// Fields:
+//   - name: string (required, length 1..120) - guest name(s)
+//   - attendance: string (required, enum: 'yes' | 'no') - attendance status
+//   - lang: string (required, enum: 'kg' | 'ru') - submission language
+//   - updatedAt: timestamp (required, must equal request.time) - server timestamp
+//
+// Subcollection: invitations/erbol-nuraida-2026/wishes
+// Document ID: {wishId} (Firestore auto-generated ID)
+// Fields:
+//   - author: string (required, length 1..80) - guest display name
+//   - text: string (required, length 1..600) - congratulatory wish text
+//   - date: string (required, length 1..20) - formatted display date string
+//   - lang: string (required, enum: 'kg' | 'ru') - submission language
+//   - createdAt: timestamp (required, must equal request.time) - server timestamp
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Restrict subcollection access to this wedding's dedicated invitation path
+    function isTargetInvitation(invitationId) {
+      return invitationId == 'erbol-nuraida-2026';
+    }
+
+    // Ensure a document contains exact required fields and no extraneous fields
+    function hasExactFields(data, fields) {
+      return data.keys().hasOnly(fields) && data.keys().hasAll(fields);
+    }
+
+    // Validate a required string within inclusive length bounds
+    function isValidString(value, minLen, maxLen) {
+      return value is string && value.size() >= minLen && value.size() <= maxLen;
+    }
+
+    // Validate supported UI languages
+    function isValidLang(value) {
+      return value is string && value in ['kg', 'ru'];
+    }
+
+    // Validate RSVP attendance enum
+    function isValidAttendance(value) {
+      return value is string && value in ['yes', 'no'];
+    }
+
+    // Enforce server-assigned timestamp matching request evaluation time
+    function isServerTime(value) {
+      return value is timestamp && value == request.time;
+    }
+
+    // Validate guest-supplied RSVP document ID bounds
+    function isValidRsvpId(rsvpId) {
+      return rsvpId is string && rsvpId.size() >= 8 && rsvpId.size() <= 64;
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate RSVP payload (enforced identically on create and update)
+    function isValidRsvp(data) {
+      return hasExactFields(data, ['name', 'attendance', 'lang', 'updatedAt']) &&
+             isValidString(data.name, 1, 120) &&
+             isValidAttendance(data.attendance) &&
+             isValidLang(data.lang) &&
+             isServerTime(data.updatedAt);
+    }
+
+    // Validate public guestbook wish payload
+    function isValidWish(data) {
+      return hasExactFields(data, ['author', 'text', 'date', 'lang', 'createdAt']) &&
+             isValidString(data.author, 1, 80) &&
+             isValidString(data.text, 1, 600) &&
+             isValidString(data.date, 1, 20) &&
+             isValidLang(data.lang) &&
+             isServerTime(data.createdAt);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // Dedicated invitation container: container doc stays locked; only explicit
+    // subcollections for 'erbol-nuraida-2026' are accessible.
+    match /invitations/{invitationId} {
+      allow read, write: if false;
+
+      // Guest RSVPs: write-only (create/update by browser UUID), unreadable to protect PII
+      match /rsvp/{rsvpId} {
+        allow read: if false;
+        allow create, update: if isTargetInvitation(invitationId) &&
+                                 isValidRsvpId(rsvpId) &&
+                                 isValidRsvp(request.resource.data);
+        allow delete: if false;
+      }
+
+      // Public Guestbook Wishes: public read (list bounded to <= 100), append-only
+      match /wishes/{wishId} {
+        allow get: if isTargetInvitation(invitationId);
+        allow list: if isTargetInvitation(invitationId) &&
+                       request.query.limit != null &&
+                       request.query.limit > 0 &&
+                       request.query.limit <= 100;
+        allow create: if isTargetInvitation(invitationId) &&
+                         isValidWish(request.resource.data);
+        allow update, delete: if false;
+      }
+    }
+
+    // Explicit catch-all deny for all other paths and subcollections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

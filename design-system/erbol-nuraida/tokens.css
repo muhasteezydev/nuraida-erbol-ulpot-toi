@@ -1,0 +1,33 @@
+/* Design Tokens — Monochrome Editorial System */
+:root {
+  --color-primary: #111111;
+  --color-on-primary: #F4F2EE;
+  --color-secondary: #1A1A1A;
+  --color-on-secondary: #F4F2EE;
+  --color-accent: #0A0A0A;
+  --color-on-accent: #F4F2EE;
+  --color-background: #F4F2EE;
+  --color-paper-warm: #EFECE8;
+  --color-stage: #D9D7D2;
+  --color-foreground: #111111;
+  --color-card: #F4F2EE;
+  --color-card-foreground: #111111;
+  --color-muted: #E7E4DE;
+  --color-muted-foreground: #52504C;
+  --color-border: #111111;
+  --color-border-subtle: #CFCBC4;
+  --color-ring: #111111;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-serif-sc: "Cormorant SC", "Cormorant Garamond", serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-script: "Bad Script", "Caveat", cursive;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+}

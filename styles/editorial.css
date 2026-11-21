@@ -1,0 +1,763 @@
+/* ==========================================================================
+   ERBOL & NURAIDA — MONOCHROME EDITORIAL WEDDING INVITATION (@jul.design.ru)
+   Strictly no Inter / Arial / Roboto — only Cormorant Garamond, Lora, Great Vibes
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Alexandra Script';
+  src: url('../assets/fonts/AlexandraScript.woff') format('woff'),
+       url('../assets/fonts/AlexandraScript.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Reference Antarctic';
+  src: url('../assets/fonts/antarctic-reference.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Reference Carolina';
+  src: url('../assets/fonts/carolina-reference.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('../assets/fonts/the-seasons-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Seasons Italic';
+  src: url('../assets/fonts/the-seasons-italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --bg-canvas: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6E6E6E;
+  --text-watermark: rgba(26, 26, 26, 0.06);
+  --bg-cta: #111111;
+  --text-on-cta: #FFFFFF;
+
+  --font-serif: 'Forum', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Cormorant Garamond', 'Lora', Georgia, 'Times New Roman', serif;
+  --font-script: 'Forum', 'Cormorant Garamond', Georgia, serif;
+  --font-hero-date: 'Forum', 'Cormorant Garamond', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+:root::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: clip;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: #FFFFFF;
+  line-height: 1.44;
+  overflow-x: clip;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 1.95rem;
+  line-height: 1.12;
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.14;
+  letter-spacing: 0.04em;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.44;
+}
+
+/* Global Accessible Keyboard Focus & Tactile Press States (UI/UX Pro Max) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 2px;
+}
+
+#hero a:focus-visible,
+#hero button:focus-visible {
+  outline-color: #FFFFFF;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+/* Mandatory Monochrome Filter on All Photos */
+img,
+.bw-photo {
+  filter: grayscale(100%) contrast(1.06);
+}
+
+/* Desktop Ambient Blurred B&W Backdrop around the 460px Centered Column */
+.desktop-ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('../assets/photos/photo-1.jpg');
+  background-size: cover;
+  background-position: 50% 24%;
+  filter: grayscale(100%) contrast(1.06) blur(26px) brightness(0.42);
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.invitation-column {
+  background-color: #FFFFFF;
+}
+
+/* Monochrome Welcome Stage */
+.welcome-scallop-stage {
+  background-color: #F6F5F2;
+}
+
+.welcome-script-line {
+  font-family: 'Alexandra Script', 'Reference Antarctic', 'Reference Carolina', 'Forum', Georgia, serif;
+}
+
+/* Soft Countdown Pill Boxes */
+.countdown-box {
+  min-width: 52px;
+  padding: 0 4px;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Gentle Breathing Arrow on Hero */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
+.hero-scroll-arrow {
+  animation: gentleFloat 2.6s ease-in-out infinite;
+}
+.hero-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.56) 0%,
+    rgba(8, 8, 8, 0.14) 16%,
+    rgba(8, 8, 8, 0.04) 36%,
+    rgba(8, 8, 8, 0.16) 52%,
+    rgba(20, 20, 20, 0.72) 68%,
+    rgba(20, 20, 20, 0.96) 84%,
+    #141414 100%
+  );
+}
+
+.hero-script-shadow {
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
+}
+
+#hero-names-stacked {
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
+}
+
+#hero-names-stacked span {
+  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+/* Language Switcher on Hero First Screen (44x44px touch target) */
+.lang-switch-btn {
+  background: transparent;
+  border: 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+/* Monochrome Editorial Toast Notification */
+.editorial-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 76px;
+  transform: translate(-50%, 16px);
+  z-index: 60;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+}
+
+.editorial-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.lang-switch-btn.is-active {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Editorial Interlocked Letters (LOCATION & ГОСТЯ per @jul.design.ru reference) */
+.editorial-interlock {
+  display: inline-block;
+  margin-right: -0.14em;
+}
+
+.editorial-watermark {
+  color: rgba(26, 26, 26, 0.06);
+}
+
+/* Minimalist Radio Buttons for RSVP */
+.editorial-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #6E6E6E;
+  border-radius: 50%;
+  background-color: transparent;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.editorial-radio::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #1A1A1A;
+  transform: scale(0);
+  transition: transform 140ms ease-in-out;
+}
+
+.editorial-radio:checked::before {
+  transform: scale(1);
+}
+
+.editorial-radio:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 2px;
+}
+
+/* Wishes Carousel Cards (Minimalist Premium Monochrome Surface) */
+.wishes-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.wishes-track::-webkit-scrollbar {
+  display: none;
+}
+
+.wish-card {
+  position: relative;
+  flex: 0 0 100%;
+  min-height: 172px;
+  padding: 22px 20px 18px;
+  background-color: #383838;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+}
+
+.wish-card::before {
+  content: "“";
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.wish-card-meta {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Share Invitation Section: Mode Tabs, Story Preview Card & Social Buttons */
+.share-tab-btn {
+  background-color: transparent;
+  color: #1A1A1A;
+  border: 1px solid rgba(26, 26, 26, 0.45);
+  cursor: pointer;
+}
+
+.share-tab-btn.is-active {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+}
+
+.share-cover-names {
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
+}
+
+.share-cover-names span {
+  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+.share-story-card {
+  background-color: #111111;
+  color: #FFFFFF;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.share-story-card p,
+.share-story-card span {
+  color: #FFFFFF;
+}
+
+.share-card-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.24) 0%,
+    rgba(8, 8, 8, 0.04) 38%,
+    rgba(8, 8, 8, 0.68) 64%,
+    rgba(8, 8, 8, 0.94) 100%
+  );
+}
+
+.share-card-scrim-strong {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.62) 0%,
+    rgba(10, 10, 10, 0.52) 50%,
+    rgba(10, 10, 10, 0.82) 100%
+  );
+}
+
+.share-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #1A1A1A;
+  border: 1px solid #1A1A1A;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.share-social-btn:hover {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+}
+
+/* ==========================================================================
+   10. Opening Envelope Gate (Reference Splash Screen)
+   ========================================================================== */
+.envelope-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  background-color: #EAE9E4;
+  transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.envelope-gate.is-opening {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+.envelope-gate.is-hidden {
+  display: none;
+}
+
+.envelope-gate__sheet {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  min-height: 100dvh;
+  background-color: #F6F5F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(28px, 6vh, 52px) 20px clamp(24px, 5vh, 44px);
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.envelope-gate__lang {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Forum', 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: #525252;
+}
+
+.envelope-lang-btn {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #525252;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.envelope-lang-btn[aria-pressed='true'] {
+  color: #111111;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.envelope-gate__header {
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.envelope-gate__eyebrow {
+  font-family: 'Alexandra Script', 'Reference Antarctic', 'Reference Carolina', 'Forum', Georgia, serif;
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #2A2A2A;
+}
+
+.envelope-gate__names {
+  margin: 16px auto 0;
+  font-family: 'The Seasons', 'Forum', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.45rem, 6.8vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  color: #1A1A1A;
+}
+
+.envelope-gate__amp {
+  font-family: 'Seasons Italic', 'The Seasons', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.05em;
+  margin: 0 2px;
+}
+
+.envelope-gate__btn {
+  width: 100%;
+  max-width: 310px;
+  margin: 12px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  transition: transform 280ms ease;
+}
+
+.envelope-gate__btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.envelope-gate__btn:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 8px;
+  border-radius: 8px;
+}
+
+.envelope-gate__btn:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+
+.envelope-gate__btn:active {
+  transform: scale(0.985);
+}
+
+.envelope-gate__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.14));
+}
+
+.envelope-gate__footer {
+  margin-bottom: 4px;
+}
+
+.envelope-gate__cta-top {
+  min-height: 44px;
+  padding: 10px 24px;
+  border: 0;
+  background: transparent;
+  font-family: 'Alexandra Script', 'Reference Antarctic', 'Reference Carolina', 'Forum', Georgia, serif;
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #2A2A2A;
+  cursor: pointer;
+  transition: opacity 180ms ease;
+}
+
+.envelope-gate__cta-top:hover {
+  opacity: 0.65;
+}
+
+/* ==========================================================================
+   11. Editorial RSVP Banner & Modal
+   ========================================================================== */
+.rsvp-banner-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(12, 12, 12, 0.52) 0%,
+    rgba(12, 12, 12, 0.18) 38%,
+    rgba(12, 12, 12, 0.62) 72%,
+    rgba(12, 12, 12, 0.84) 100%
+  );
+}
+
+.rsvp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background-color: rgba(16, 16, 16, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.rsvp-modal.hidden {
+  display: none;
+}
+
+.rsvp-modal__card {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 52px 24px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.rsvp-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #1A1A1A;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   12. Floating Monochrome Music Equalizer Toggle
+   ========================================================================== */
+.music-toggle-btn {
+  position: fixed;
+  right: max(16px, calc(50% - 214px));
+  bottom: 20px;
+  z-index: 55;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid rgba(246, 245, 242, 0.36);
+  background-color: rgba(26, 26, 26, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 280ms ease, transform 280ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.music-toggle-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.music-toggle-btn:hover {
+  background-color: rgba(26, 26, 26, 0.9);
+  border-color: rgba(246, 245, 242, 0.64);
+}
+
+.music-toggle-btn:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 3px;
+}
+
+.music-bars {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 18px;
+}
+
+.music-bar {
+  display: block;
+  width: 2px;
+  border-radius: 999px;
+  background-color: #F6F5F2;
+  opacity: 0.48;
+  transition: opacity 180ms ease;
+}
+
+.music-bar--1 { height: 6px; }
+.music-bar--2 { height: 16px; }
+.music-bar--3 { height: 13px; }
+.music-bar--4 { height: 9px; }
+
+.music-toggle-btn.is-playing .music-bar {
+  opacity: 1;
+  animation: musicBarWave 1.15s ease-in-out infinite;
+}
+
+.music-toggle-btn.is-playing .music-bar--1 { animation-delay: 0s; }
+.music-toggle-btn.is-playing .music-bar--2 { animation-delay: -0.45s; }
+.music-toggle-btn.is-playing .music-bar--3 { animation-delay: -0.2s; }
+.music-toggle-btn.is-playing .music-bar--4 { animation-delay: -0.65s; }
+
+@keyframes musicBarWave {
+  0%, 100% {
+    transform: scaleY(0.55);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .envelope-gate,
+  .envelope-gate__btn,
+  .music-toggle-btn {
+    transition: none !important;
+  }
+
+  .music-toggle-btn.is-playing .music-bar {
+    animation: none !important;
+  }
+
+  .js-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

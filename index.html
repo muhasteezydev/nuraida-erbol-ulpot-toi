@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erbol &amp; Nuraida — 03.12.2026 | Тойго чакыруу</title>
+  <meta
+    name="description"
+    content="Эрбол жана Нураиданын үлпөт тоюна чакыруу. 2026-жылдын 3-декабры, саат 18:00, Bellagio Banquet Hall, Бишкек ш."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Erbol &amp; Nuraida — 03.12.2026" />
+  <meta property="og:description" content="3 декабрь 2026 · Саат 18:00 · Bellagio Banquet Hall, Бишкек ш." />
+  <meta property="og:image" content="assets/photos/photo-1.jpg" />
+  <meta name="theme-color" content="#111111" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFFF' font-family='Georgia, serif' font-size='22'%3EE%26N%3C/text%3E%3C/svg%3E"
+  />
+
+  <!-- Google Fonts: Forum, Cormorant Garamond, Lora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Forum&family=Lora:ital,wght@0,400;0,500;1,400&display=swap&subset=cyrillic,cyrillic-ext"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FFFFFF',
+            card: '#FFFFFF',
+            ink: '#1A1A1A',
+            muted: '#6E6E6E',
+            cta: '#111111',
+          },
+          fontFamily: {
+            serif: ['"Forum"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+            body: ['"Cormorant Garamond"', '"Lora"', 'Georgia', 'serif'],
+            script: ['"Forum"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+            heroDate: ['"Forum"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles/editorial.css?v=3" />
+</head>
+<body class="bg-white text-[#1A1A1A] font-body text-base antialiased">
+
+  <!-- Opening Envelope Gate (Click envelope to enter site) -->
+  <div id="envelope-gate" class="envelope-gate" role="dialog" aria-modal="true" aria-label="Тойго чакыруу конверти">
+    <div class="envelope-gate__sheet">
+      <div class="envelope-gate__lang">
+        <button type="button" data-lang-btn="kg" class="envelope-lang-btn" aria-pressed="true">KG</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang-btn="ru" class="envelope-lang-btn" aria-pressed="false">RU</button>
+      </div>
+
+      <div class="envelope-gate__header">
+        <p id="envelope-eyebrow" class="envelope-gate__eyebrow">Чакыруу</p>
+        <p class="envelope-gate__names">
+          ERBOL <span class="envelope-gate__amp">&amp;</span> NURAIDA
+        </p>
+      </div>
+
+      <button
+        id="envelope-open-btn"
+        type="button"
+        class="envelope-gate__btn"
+        aria-label="Ачуу үчүн конвертти басыңыз"
+      >
+        <img
+          src="assets/photos/envelope-cover.png"
+          alt="Ак конверт кара лента менен"
+          width="657"
+          height="607"
+          class="envelope-gate__img"
+        />
+      </button>
+
+      <div class="envelope-gate__footer">
+        <button id="envelope-cta-top" type="button" class="envelope-gate__cta-top">Басыңыз</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Fixed Blurred B&W Backdrop (Hidden on narrow mobile, visible around the 460px column on desktop) -->
+  <div class="desktop-ambient-backdrop" aria-hidden="true"></div>
+
+  <!-- Centered Vertical Column (100% width on 390px mobile, fixed max-w-[460px] column on 1440px desktop) -->
+  <div class="invitation-column relative z-10 w-full max-w-[460px] mx-auto min-h-screen overflow-hidden">
+    <main>
+      <!-- =================================================================
+           1. HERO SECTION (100vh)
+           ================================================================= -->
+      <section id="hero" tabindex="-1" class="relative w-full h-screen min-h-[640px] max-h-[960px] flex flex-col justify-between py-8 px-6 text-center text-white overflow-hidden focus:outline-none">
+        <img
+          src="assets/photos/photo-1.jpg"
+          alt="Erbol &amp; Nuraida"
+          width="682"
+          height="1024"
+          fetchpriority="high"
+          class="bw-photo absolute inset-0 w-full h-full object-cover object-[50%_24%]"
+        />
+        <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
+
+        <!-- Top Editorial Bar: KG/RU Switcher (Right) -->
+        <div class="relative z-20 w-full flex items-center justify-center">
+          <div class="inline-flex items-center gap-1 font-serif text-xs tracking-[0.14em] uppercase" role="group" aria-label="Тил тандоо">
+            <button type="button" class="lang-switch-btn is-active" data-lang-btn="kg" aria-pressed="true">KG</button>
+            <span class="text-white" aria-hidden="true">|</span>
+            <button type="button" class="lang-switch-btn" data-lang-btn="ru" aria-pressed="false">RU</button>
+          </div>
+        </div>
+
+        <!-- Centered Reference-Style Names, Date & City -->
+        <div class="relative z-10 mt-auto mb-6 flex flex-col items-center">
+          <p id="hero-names-stacked" class="font-serif text-[clamp(1.45rem,6.8vw,2.45rem)] leading-[1.1] tracking-[0.04em] uppercase text-white hero-script-shadow whitespace-nowrap">
+            ERBOL <span class="font-body italic font-normal text-[1.06em] mx-1">&amp;</span> NURAIDA
+          </p>
+
+          <p id="hero-date-full" class="mt-5 font-serif text-[clamp(1.15rem,4.6vw,1.35rem)] tracking-[0.22em] uppercase text-white hero-script-shadow">
+            03 ДЕКАБРЬ 2026
+          </p>
+        </div>
+
+        <div class="relative z-10 flex justify-center">
+          <a
+            href="#welcome"
+            aria-label="Төмөн жылдыруу"
+            class="hero-scroll-arrow inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 font-serif text-base text-white no-underline transition-opacity hover:opacity-75"
+          >
+            &#8595;
+          </a>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           2. БЛОК ПРИВЕТСТВИЯ (Monochrome Scalloped Invitation Card on #111111 Stage)
+           ================================================================= -->
+      <section id="welcome" class="welcome-scallop-stage js-reveal px-6 py-11 text-center">
+        <div class="max-w-[310px] mx-auto">
+          <h1 class="flex flex-col items-center">
+            <span id="welcome-heading" class="block font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
+              УРМАТТУУ
+            </span>
+            <span id="welcome-heading-script" class="welcome-script-line block mt-0.5 text-[3.4rem] leading-[1.02] font-normal text-[#1A1A1A]">
+              коноктор!
+            </span>
+          </h1>
+
+          <p id="welcome-text" class="mt-5 font-body text-base leading-[1.48] text-[#1A1A1A]">
+            Аруу тилектер орундалып, жаңы очогубуз тутанган кубанычтуу күнүбүздө сиздер менен бирге болуу биз үчүн чоң бакыт!
+          </p>
+
+          <p id="welcome-date-caps" class="mt-6 font-serif text-[1.5rem] leading-[1.15] tracking-[0.08em] text-[#1A1A1A]">
+            03.12.26 - 18.00
+          </p>
+
+          <div class="mt-5">
+            <button
+              id="add-calendar-btn"
+              type="button"
+              class="inline-flex items-center justify-center gap-2 min-h-[44px] px-7 py-3 rounded-full border border-[#1A1A1A] bg-transparent font-serif text-xs leading-none tracking-[0.14em] uppercase text-[#1A1A1A] transition-colors hover:bg-[#111111] hover:text-white"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span id="add-calendar-label">КАЛЕНДАРГА КОШУУ</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           2.5. ТАЙМЕР ОБРАТНОГО ОТСЧЁТА (COUNTDOWN)
+           ================================================================= -->
+      <section id="countdown" class="js-reveal bg-[#2D2D2D] text-white px-6 py-9">
+        <div class="max-w-[320px] mx-auto text-center">
+          <span id="countdown-eyebrow" class="block font-serif text-[0.95rem] tracking-[0.22em] uppercase text-white">
+            ТОЙГО ЧЕЙИН
+          </span>
+          <h2 id="countdown-heading" class="welcome-script-line mt-0.5 font-normal text-[2.75rem] leading-[1.02] text-white">
+            калды
+          </h2>
+
+          <div class="mt-6 flex items-start justify-center gap-2.5" aria-live="off">
+            <div class="countdown-box">
+              <span id="cd-days" class="font-serif font-normal text-[2.3rem] leading-none text-white">00</span>
+              <span id="cd-days-label" class="mt-1.5 font-body text-[0.8125rem] text-white/90">күн</span>
+            </div>
+
+            <span class="font-serif text-[1.75rem] leading-none text-white/85 pt-0.5" aria-hidden="true">:</span>
+
+            <div class="countdown-box">
+              <span id="cd-hours" class="font-serif font-normal text-[2.3rem] leading-none text-white">00</span>
+              <span id="cd-hours-label" class="mt-1.5 font-body text-[0.8125rem] text-white/90">саат</span>
+            </div>
+
+            <span class="font-serif text-[1.75rem] leading-none text-white/85 pt-0.5" aria-hidden="true">:</span>
+
+            <div class="countdown-box">
+              <span id="cd-mins" class="font-serif font-normal text-[2.3rem] leading-none text-white">00</span>
+              <span id="cd-mins-label" class="mt-1.5 font-body text-[0.8125rem] text-white/90">мүнөт</span>
+            </div>
+
+            <span class="font-serif text-[1.75rem] leading-none text-white/85 pt-0.5" aria-hidden="true">:</span>
+
+            <div class="countdown-box">
+              <span id="cd-secs" class="font-serif font-normal text-[2.3rem] leading-none text-white">00</span>
+              <span id="cd-secs-label" class="mt-1.5 font-body text-[0.8125rem] text-white/90">секунд</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           3. БЛОК «LOCATION»
+           ================================================================= -->
+      <section id="location" class="js-reveal bg-[#F6F5F2] px-6 py-11 text-center">
+        <div class="max-w-[310px] mx-auto">
+          <h2 id="location-heading" class="font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
+            ТОЙДУН ДАРЕГИ
+          </h2>
+          <p id="location-name" class="mt-4 font-body text-base font-medium text-[#1A1A1A]">
+            Bellagio Banquet Hall
+          </p>
+          <p id="location-address" class="mt-0.5 font-body text-base leading-[1.4] text-[#3A3A3A]">
+            Бишкек ш., Лев Толстой көч., 36к/1
+          </p>
+
+          <div class="mt-6 flex justify-center">
+            <a
+              id="location-2gis-btn"
+              href="https://2gis.kg/bishkek/firm/70000001035315188"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center min-h-[44px] px-8 py-3 rounded-full border border-[#1A1A1A] bg-transparent text-[#1A1A1A] text-center font-serif text-xs leading-none tracking-[0.14em] uppercase transition-colors hover:bg-[#1A1A1A] hover:text-white no-underline"
+            >
+              КАРТАДАН КӨРҮҮ
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           5. БЛОК «DRESS CODE» (Monochrome Scalloped Card matching #welcome)
+           ================================================================= -->
+      <section id="dresscode" class="js-reveal bg-[#EAE8E2] px-6 py-11 text-center">
+        <div class="max-w-[310px] mx-auto">
+          <h2 class="inline-flex items-baseline justify-center gap-3">
+            <span id="dresscode-heading" class="font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
+              ДРЕСС
+            </span>
+            <span id="dresscode-heading-script" class="welcome-script-line font-normal text-[2.95rem] leading-[1.0] text-[#1A1A1A]">
+              код
+            </span>
+          </h2>
+
+          <p id="dresscode-text-1" class="mt-4 font-body text-base leading-[1.46] text-[#1A1A1A]">
+            Тоюбуздун эң башкы көркү — сиздердин катышууңуздар.
+          </p>
+
+          <p id="dresscode-text-2" class="mt-3 font-body text-base leading-[1.46] text-[#1A1A1A]">
+            Биздин кеченин негизги өңү — кара түс. Сиздерден кара түстөгү кечки кийимде келүүңүздөрдү суранабыз.
+          </p>
+
+          <!-- Minimalist Faceless Couple Silhouette Icon (Suit & Evening Gown) -->
+          <div class="mt-6 flex items-center justify-center" aria-label="Кара түстөгү кечки образдар">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 110 92"
+              width="80"
+              height="67"
+              class="text-[#111111]"
+              aria-hidden="true"
+            >
+              <!-- Gentleman: Faceless Minimalist Figure in Black Suit -->
+              <g transform="translate(14, 4)">
+                <circle cx="18" cy="10" r="6.2" fill="#111111" />
+                <path
+                  d="M7 23 C7 19.5 11 18.5 18 18.5 C25 18.5 29 19.5 29 23 L32 45 C32 46.5 29.8 47 29.2 45.2 L27 29 L26 48 L25 80 C25 81.8 22.2 81.8 22.2 80 L19.2 52 L16.8 52 L13.8 80 C13.8 81.8 11 81.8 11 80 L10 48 L9 29 L6.8 45.2 C6.2 47 4 46.5 4 45 Z"
+                  fill="#111111"
+                />
+                <polygon points="15,18.5 21,18.5 18,28.5" fill="#FFFFFF" />
+                <polygon points="16.2,19.5 18,21 16.2,22.5" fill="#111111" />
+                <polygon points="19.8,19.5 18,21 19.8,22.5" fill="#111111" />
+              </g>
+
+              <!-- Lady: Faceless Minimalist Figure in Black Evening Gown -->
+              <g transform="translate(56, 4)">
+                <circle cx="20" cy="12" r="5.8" fill="#111111" />
+                <path d="M18.6 17.5 L21.4 17.5 L21.4 21.5 L18.6 21.5 Z" fill="#111111" />
+                <path
+                  d="M14 23 L8.2 44.5 C7.8 46 9.8 46.7 10.4 45.1 L15.5 28"
+                  fill="none"
+                  stroke="#111111"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M26 23 L31.8 44.5 C32.2 46 30.2 46.7 29.6 45.1 L24.5 28"
+                  fill="none"
+                  stroke="#111111"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 22.5 Q20 25 26 22.5 L24.2 38 Q30.5 58 33.5 76 Q20 79.5 6.5 76 Q9.5 58 15.8 38 Z"
+                  fill="#111111"
+                />
+                <line x1="17.2" y1="76" x2="17.2" y2="81.5" stroke="#111111" stroke-width="2.2" stroke-linecap="round" />
+                <line x1="22.8" y1="76" x2="22.8" y2="81.5" stroke="#111111" stroke-width="2.2" stroke-linecap="round" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           6. БЛОК «АНКЕТА ГОСТЯ» (EDITORIAL RSVP BANNER -> MODAL)
+           ================================================================= -->
+      <section id="rsvp" class="js-reveal relative w-full min-h-[520px] flex flex-col justify-between py-12 px-6 text-center text-white overflow-hidden">
+        <img
+          src="assets/photos/rsvp-glasses.jpg"
+          alt="Конок анкетасы"
+          width="896"
+          height="1200"
+          loading="lazy"
+          class="bw-photo absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div class="rsvp-banner-scrim absolute inset-0" aria-hidden="true"></div>
+
+        <h2 id="rsvp-banner-heading" class="relative z-10 font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-white hero-script-shadow">
+          КОНОК АНКЕТАСЫ
+        </h2>
+
+        <div class="relative z-10 mt-auto flex flex-col items-center">
+          <p id="rsvp-banner-text" class="max-w-[300px] mx-auto font-body text-base leading-[1.45] text-white hero-script-shadow">
+            Сиздерди татыктуу тосуп алуубуз үчүн, сураныч, бул анкетаны толтуруп коюңуз:
+          </p>
+
+          <button
+            id="rsvp-open-modal-btn"
+            type="button"
+            class="mt-5 inline-flex items-center justify-center min-h-[44px] px-12 py-3 rounded-full border border-white/90 bg-transparent text-white font-serif text-xs leading-none tracking-[0.16em] uppercase transition-colors hover:bg-white hover:text-[#1A1A1A]"
+          >
+            ТОЛТУРУУ
+          </button>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           7. ПРЕДПОСЛЕДНЯЯ СТРАНИЦА: «АК ТИЛЕГИҢИЗДИ КАЛТЫРЫҢЫЗ» (WISHES)
+           ================================================================= -->
+      <section id="wishes" class="js-reveal">
+        <!-- Light Form Block -->
+        <div class="bg-[#F6F5F2] px-6 py-11">
+          <div class="max-w-[310px] mx-auto">
+            <div class="text-center mb-6">
+              <h2 class="flex flex-col items-center">
+                <span id="wishes-heading" class="block font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
+                  КААЛОО
+                </span>
+                <span id="wishes-heading-script" class="welcome-script-line block mt-0.5 text-[3.1rem] leading-[1.02] font-normal text-[#1A1A1A]">
+                  тилектер
+                </span>
+              </h2>
+              <p id="wishes-subtitle" class="mt-4 font-body text-base leading-[1.46] text-[#1A1A1A]">
+                Сиздин ар бир жылуу сөзүңүз жана батаңыз — жаңы үй-бүлөбүз үчүн эң кымбат белек.
+              </p>
+            </div>
+
+            <form id="wishes-form" class="flex flex-col gap-5" novalidate>
+              <div>
+                <label for="wish-author" id="wishes-name-label" class="block font-serif text-[0.8125rem] tracking-[0.14em] uppercase text-[#525252]">
+                  Сиздин ысымыңыз
+                </label>
+                <input
+                  id="wish-author"
+                  name="wishAuthor"
+                  type="text"
+                  required
+                  placeholder="Ысымыңызды жазыңыз"
+                  class="mt-1 w-full bg-transparent border-0 border-b border-[#B5B5B5] px-1 py-3 font-body text-base text-[#1A1A1A] placeholder-[#666666] focus:outline-none focus:border-[#1A1A1A] rounded-none transition-colors"
+                />
+              </div>
+
+              <div>
+                <label for="wish-message" id="wishes-msg-label" class="block font-serif text-[0.8125rem] tracking-[0.14em] uppercase text-[#525252]">
+                  Каалоо-тилегиңиз
+                </label>
+                <textarea
+                  id="wish-message"
+                  name="wishMessage"
+                  rows="3"
+                  maxlength="600"
+                  required
+                  placeholder="Эрбол менен Нураидага каалооңуз..."
+                  class="mt-1 w-full bg-transparent border-0 border-b border-[#B5B5B5] px-1 py-3 font-body text-base text-[#1A1A1A] placeholder-[#666666] focus:outline-none focus:border-[#1A1A1A] rounded-none resize-none transition-colors"
+                ></textarea>
+                <div class="mt-2 flex items-center justify-between gap-2">
+                  <span id="wishes-visibility-note" class="font-body text-sm text-[#525252]">
+                    Калтырылган тилектер коноктор китебинде сакталат.
+                  </span>
+                  <span id="wish-char-count" class="font-serif text-[0.8125rem] text-[#525252]">0/600</span>
+                </div>
+                <p id="wishes-error" class="mt-1.5 font-body text-sm text-[#1A1A1A] hidden" role="alert"></p>
+              </div>
+
+              <div class="flex justify-center mt-1">
+                <button
+                  id="wishes-submit-btn"
+                  type="submit"
+                  class="inline-flex items-center justify-center min-h-[44px] px-10 py-3 rounded-full border border-[#1A1A1A] bg-transparent text-[#1A1A1A] font-serif text-xs leading-none tracking-[0.14em] uppercase text-center transition-colors hover:bg-[#1A1A1A] hover:text-white"
+                >
+                  КААЛОО ЖӨНӨТҮҮ
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Dark Wishes Carousel / Horizontal Slider Block -->
+        <div class="bg-[#2D2D2D] text-white px-6 py-10">
+          <div class="max-w-[310px] mx-auto">
+            <div class="flex items-center justify-between mb-3">
+              <div class="inline-flex items-center gap-2.5 font-serif text-xs tracking-[0.16em] uppercase text-white/85">
+                <span id="wishes-list-title">КОНОКТОРДУН ТИЛЕКТЕРИ</span>
+              </div>
+              <div class="inline-flex items-center gap-1">
+                <button
+                  id="wishes-prev-btn"
+                  type="button"
+                  aria-label="Мурунку тилек"
+                  class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-white transition-opacity hover:opacity-65"
+                >
+                  &#8592;
+                </button>
+                <button
+                  id="wishes-next-btn"
+                  type="button"
+                  aria-label="Кийинки тилек"
+                  class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-white transition-opacity hover:opacity-65"
+                >
+                  &#8594;
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="wishes-track"
+              class="wishes-track flex gap-3.5 overflow-x-auto snap-x snap-mandatory py-3"
+              aria-live="polite"
+            ></div>
+
+            <p id="wishes-swipe-hint" class="mt-3 text-center font-body text-sm text-white/80">
+              Башка куттуктоолорду окуу үчүн капталга сүрүңүз.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           7.5. ПРЕДПОСЛЕДНЯЯ СТРАНИЦА: «СҮЙҮҮ МЕНЕН» (LOVE SIGN-OFF WITH PHOTO 3)
+           ================================================================= -->
+      <section id="love-closing" class="js-reveal bg-[#EAE8E2] px-6 py-11 text-center">
+        <div class="max-w-[310px] mx-auto">
+          <p id="love-note-1" class="font-body text-base leading-[1.46] text-[#1A1A1A]">
+            Биз үчүн эң башкы белек — сиздердин катышууңуздар жана жылуу батаңыздар. Бул маанилүү күнү баарыңыздарды чоң кубаныч менен күтөбүз.
+          </p>
+
+          <div class="mt-7 max-w-[235px] mx-auto">
+            <p id="love-signoff" class="welcome-script-line text-left text-[2.45rem] leading-[1.05] text-[#1A1A1A] mb-1.5">
+              урматтоо менен,
+            </p>
+            <div class="overflow-hidden aspect-[3/4] w-full bg-[#DCDAD4]">
+              <img
+                src="assets/photos/photo-3.jpg"
+                alt="Erbol &amp; Nuraida"
+                width="682"
+                height="1024"
+                loading="lazy"
+                class="bw-photo w-full h-full object-cover object-[50%_62%] scale-[1.15] origin-[50%_62%]"
+              />
+            </div>
+            <p id="love-names-script" class="welcome-script-line text-center text-[2.6rem] leading-[1.05] text-[#1A1A1A] mt-2.5">
+              Эрбол жана Нураида
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           8. ПОСЛЕДНЯЯ СТРАНИЦА: «ЧАКЫРУУНУ БӨЛҮШҮҮ» И ФУТЕР
+           ================================================================= -->
+      <footer id="footer" class="js-reveal bg-[#F6F5F2] px-6 py-11 text-center">
+        <div class="max-w-[310px] mx-auto">
+        <h2 class="flex flex-col items-center">
+          <span id="share-heading" class="block font-serif font-normal text-[2.1rem] leading-[1.1] tracking-[0.06em] uppercase text-[#1A1A1A]">
+            ЧАКЫРУУНУ
+          </span>
+          <span id="share-heading-script" class="welcome-script-line block mt-0.5 text-[3.1rem] leading-[1.02] font-normal text-[#1A1A1A]">
+            таратуу
+          </span>
+        </h2>
+
+        <!-- Mode Tabs: мукаба | чакыруу -->
+        <div class="mt-5 inline-flex items-center justify-center gap-2.5" role="tablist" aria-label="Чакыруу түрү">
+          <button
+            id="share-tab-cover-label"
+            type="button"
+            role="tab"
+            aria-controls="share-view-cover"
+            data-share-tab="cover"
+            aria-selected="true"
+            class="share-tab-btn is-active min-h-[44px] px-7 py-3 rounded-full font-serif text-xs leading-none tracking-[0.14em] uppercase transition-colors"
+          >
+            МУКАБА
+          </button>
+          <button
+            id="share-tab-invite-label"
+            type="button"
+            role="tab"
+            aria-controls="share-view-invite"
+            data-share-tab="invite"
+            aria-selected="false"
+            class="share-tab-btn min-h-[44px] px-7 py-3 rounded-full font-serif text-xs leading-none tracking-[0.14em] uppercase transition-colors"
+          >
+            ЧАКЫРУУ
+          </button>
+        </div>
+
+        <!-- 9:16 Story Preview Card -->
+        <div class="mt-6 flex justify-center">
+          <div id="share-card-preview" class="share-story-card relative w-[230px] aspect-[9/16] p-6 rounded-none border border-[#D8D5CE] overflow-hidden text-white select-none flex flex-col justify-between">
+            <!-- View 1: мукаба (Cover matching #hero) -->
+            <div id="share-view-cover" class="flex-1 flex flex-col items-center justify-end text-center">
+              <img
+                src="assets/photos/photo-1.jpg"
+                alt="Erbol &amp; Nuraida Story Cover"
+                width="682"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                class="bw-photo absolute inset-0 w-full h-full object-cover object-[50%_24%]"
+              />
+              <div class="share-card-scrim absolute inset-0" aria-hidden="true"></div>
+
+              <div class="relative z-10 mt-auto mb-2 flex flex-col items-center">
+                <p class="share-cover-names text-[1.25rem] leading-[1.1] tracking-[0.04em] uppercase text-white hero-script-shadow whitespace-nowrap">
+                  ERBOL <span class="italic font-normal text-[1.06em] mx-0.5">&amp;</span> NURAIDA
+                </p>
+
+                <span id="share-cover-date" class="mt-2 font-serif text-xs tracking-[0.2em] uppercase text-white hero-script-shadow">
+                  03 ДЕКАБРЬ 2026
+                </span>
+              </div>
+            </div>
+
+            <!-- View 2: Чакыруу (Invitation Card) -->
+            <div id="share-view-invite" class="hidden flex-1 flex flex-col items-center justify-between text-center">
+              <img
+                src="assets/photos/photo-3.jpg"
+                alt="Erbol &amp; Nuraida Story Invitation"
+                width="682"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                class="bw-photo absolute inset-0 w-full h-full object-cover object-[50%_62%]"
+              />
+              <div class="share-card-scrim-strong absolute inset-0" aria-hidden="true"></div>
+
+              <div class="relative z-10 mt-1">
+                <span id="share-invite-top" class="block font-serif text-xs tracking-[0.18em] uppercase text-white">
+                  ҮЛПӨТ ТОЙ &bull; БИШКЕК
+                </span>
+              </div>
+
+              <div class="relative z-10 my-auto">
+                <p class="share-cover-names text-[1.25rem] leading-[1.1] tracking-[0.04em] uppercase text-white whitespace-nowrap">
+                  ERBOL <span class="italic font-normal text-[1.06em] mx-0.5">&amp;</span> NURAIDA
+                </p>
+                <p id="share-invite-body" class="mt-2 font-body text-xs leading-[1.5] text-white">
+                  Сиздерди биздин үлпөт тоюбуздун кадырлуу коногу болууга чакырабыз
+                </p>
+              </div>
+
+              <div class="relative z-10 flex flex-col items-center">
+                <span class="font-serif text-xs tracking-[0.18em] uppercase text-white">03.12.2026 &bull; 18:00</span>
+                <span class="mt-1 font-serif text-xs tracking-[0.14em] uppercase text-white">BELLAGIO BANQUET HALL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Share Icon Buttons (Instagram, WhatsApp, Telegram) -->
+        <div class="mt-6 flex items-center justify-center gap-3.5">
+          <button
+            id="share-ig-btn"
+            type="button"
+            aria-label="Instagram Story"
+            class="share-social-btn w-11 h-11 rounded-full"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+          </button>
+
+          <a
+            id="share-wa-btn"
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            class="share-social-btn w-11 h-11 rounded-full no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9l-5.05.9"></path>
+              <path d="M9 10a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
+            </svg>
+          </a>
+
+          <a
+            id="share-tg-btn"
+            href="https://t.me/share/url"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+            class="share-social-btn w-11 h-11 rounded-full no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" x2="11" y1="2" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Download Image & Copy Link Actions -->
+        <div class="mt-5 flex items-center justify-center gap-3 flex-wrap">
+          <button
+            id="share-download-btn"
+            type="button"
+            class="inline-flex items-center justify-center min-h-[44px] px-7 py-3 rounded-full border border-[#1A1A1A] bg-transparent font-serif text-xs leading-none tracking-[0.14em] uppercase text-[#1A1A1A] transition-colors hover:bg-[#1A1A1A] hover:text-white"
+          >
+            СҮРӨТТҮ САКТОО
+          </button>
+
+          <button
+            id="share-copy-btn"
+            type="button"
+            class="inline-flex items-center justify-center min-h-[44px] px-7 py-3 rounded-full border border-[#1A1A1A] bg-transparent font-serif text-xs leading-none tracking-[0.14em] uppercase text-[#1A1A1A] transition-colors hover:bg-[#1A1A1A] hover:text-white"
+          >
+            ШИЛТЕМЕНИ КӨЧҮРҮҮ
+          </button>
+        </div>
+
+        <p id="share-story-hint" class="mt-4 font-body text-sm leading-[1.55] text-[#525252] max-w-[290px] mx-auto">
+          Даяр сүрөттү жүктөп алып, жакындарыңыз менен же Instagram Story аркылуу бөлүшсөңүз болот.
+        </p>
+
+        <div class="mt-8">
+          <a
+            id="back-to-top-btn"
+            href="#hero"
+            class="inline-flex items-center justify-center min-h-[44px] px-5 py-3 font-serif text-xs tracking-[0.18em] uppercase text-[#525252] hover:text-[#1A1A1A] no-underline transition-colors"
+          >
+            БАШЫНА КАЙТУУ &#8593;
+          </a>
+        </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- RSVP Modal Dialog -->
+  <div id="rsvp-modal" class="rsvp-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="rsvp-heading">
+    <div class="rsvp-modal__card">
+      <button id="rsvp-modal-close" type="button" aria-label="Жабуу" class="rsvp-modal__close">&times;</button>
+
+      <div id="rsvp-modal-header" class="text-center mb-4">
+        <h3 id="rsvp-heading" class="font-serif font-normal text-[1.45rem] leading-[1.15] tracking-[0.05em] uppercase text-[#1A1A1A]">
+          КАТЫШУУНУ ТАСТЫКТОО
+        </h3>
+        <p id="rsvp-subtitle" class="mt-1.5 font-body text-base leading-[1.42] text-[#1A1A1A]">
+          Сиздерди татыктуу тосуп алуубуз үчүн, келишиңизди алдын ала белгилеп коюуңузду суранабыз
+        </p>
+      </div>
+
+      <form id="rsvp-form" class="flex flex-col gap-4" novalidate>
+        <div>
+          <label for="guest-name" id="rsvp-name-label" class="block font-body text-base text-[#1A1A1A]">
+            Сиздин аты-жөнүңүз
+          </label>
+          <span id="rsvp-name-hint" class="block font-body text-sm text-[#525252] mt-0.5">
+            эгер жубайыңыз же үй-бүлөңүз менен келсеңиз, коноктордун баарын жазыңыз
+          </span>
+          <input
+            id="guest-name"
+            name="guestName"
+            type="text"
+            required
+            placeholder="Асанов Тилек, Асанова Айжан"
+            class="mt-2 w-full bg-transparent border-0 border-b border-[#777777] px-4 py-3.5 font-body text-base text-[#1A1A1A] placeholder-[#525252] focus:outline-none focus:border-[#1A1A1A] rounded-none"
+          />
+          <p id="rsvp-error" class="mt-1.5 font-body text-sm text-[#1A1A1A] hidden" role="alert"></p>
+        </div>
+
+        <fieldset class="border-0 p-0 m-0">
+          <legend id="rsvp-question" class="font-body text-base leading-[1.45] text-[#1A1A1A] mb-3">
+            Биздин кубанычыбызга ортоктош боло аласызбы?
+          </legend>
+
+          <div class="flex flex-col gap-1">
+            <label class="inline-flex items-center gap-2.5 py-2 cursor-pointer font-body text-base text-[#1A1A1A]">
+              <input type="radio" name="attendance" value="yes" checked class="editorial-radio" />
+              <span id="rsvp-opt-yes">Ооба, сөзсүз барам</span>
+            </label>
+
+            <label class="inline-flex items-center gap-2.5 py-2 cursor-pointer font-body text-base text-[#1A1A1A]">
+              <input type="radio" name="attendance" value="no" class="editorial-radio" />
+              <span id="rsvp-opt-no">Тилекке каршы, бара албайм</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button
+          id="rsvp-submit-btn"
+          type="submit"
+          class="w-full min-h-[44px] bg-[#111111] text-white font-serif text-xs leading-none tracking-[0.14em] uppercase py-3 px-6 rounded-full transition-opacity hover:opacity-90"
+        >
+          ТАСТЫКТОО
+        </button>
+      </form>
+
+      <!-- Confirmation Screen After Submit -->
+      <div id="rsvp-confirmation" class="hidden rounded-[18px] p-4 text-center">
+        <h3 id="confirm-title" class="font-serif text-[1.45rem] tracking-[0.05em] uppercase text-[#1A1A1A]">
+          ЖООБУҢУЗ КАБЫЛ АЛЫНДЫ!
+        </h3>
+        <p id="confirm-details" class="mt-2 font-body text-base leading-[1.55] text-[#525252]"></p>
+        <div class="mt-4 flex flex-col items-center gap-2.5">
+          <a
+            id="rsvp-wa-confirm-btn"
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center min-h-[44px] bg-[#111111] text-white font-serif text-xs leading-none tracking-[0.14em] uppercase py-3 px-6 rounded-full transition-opacity hover:opacity-90 no-underline"
+          >
+            WHATSAPP АРКЫЛУУ БИЛДИРҮҮ
+          </a>
+          <button
+            id="rsvp-edit-btn"
+            type="button"
+            class="inline-flex items-center justify-center min-h-[44px] px-5 py-3 underline underline-offset-4 font-serif text-xs tracking-[0.14em] uppercase text-[#1A1A1A]"
+          >
+            ЖООПТУ ӨЗГӨРТҮҮ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Wedding Music & Floating Monochrome Equalizer Toggle -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/wedding-melody.mp3?v=2" type="audio/mpeg" />
+  </audio>
+
+  <button
+    id="music-toggle-btn"
+    type="button"
+    class="music-toggle-btn"
+    aria-label="Музыканы күйгүзүү"
+    aria-pressed="false"
+  >
+    <span class="music-bars" aria-hidden="true">
+      <span class="music-bar music-bar--1"></span>
+      <span class="music-bar music-bar--2"></span>
+      <span class="music-bar music-bar--3"></span>
+      <span class="music-bar music-bar--4"></span>
+    </span>
+  </button>
+
+  <!-- Editorial Toast Notification -->
+  <div id="editorial-toast" class="editorial-toast" role="status" aria-live="polite"></div>
+
+  <!-- GSAP + ScrollTrigger + Firebase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" defer></script>
+  <script type="module" src="scripts/firebase-service.js?v=3"></script>
+  <script src="scripts/app.js?v=12" defer></script>
+</body>
+</html>
