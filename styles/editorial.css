@@ -147,7 +147,7 @@ img,
   z-index: 0;
   background-image: url('../assets/photos/photo-1.webp');
   background-size: cover;
-  background-position: 50% 24%;
+  background-position: 48% 56%;
   filter: grayscale(100%) contrast(1.06) blur(26px) brightness(0.42);
   transform: scale(1.08);
   pointer-events: none;
