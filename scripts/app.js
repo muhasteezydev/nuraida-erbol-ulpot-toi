@@ -856,33 +856,9 @@ const WEDDING_CONFIG = {
   }
 
   function drawCoupleTitle(ctx, centerX, y, sizePx) {
-    const serifFont = `${sizePx}px "The Seasons", Forum, "Cormorant Garamond", Georgia, serif`;
-    const ampFont = `italic ${Math.round(sizePx * 1.06)}px "Seasons Italic", "The Seasons", "Cormorant Garamond", Georgia, serif`;
-
-    ctx.font = serifFont;
-    const leftW = ctx.measureText('ERBOL ').width;
-    ctx.font = ampFont;
-    const ampW = ctx.measureText('&').width;
-    ctx.font = serifFont;
-    const rightW = ctx.measureText(' NURAIDA').width;
-
-    const totalW = leftW + ampW + rightW;
-    let cursorX = centerX - totalW / 2;
-
-    const prevAlign = ctx.textAlign;
-    ctx.textAlign = 'left';
-
-    ctx.font = serifFont;
-    ctx.fillText('ERBOL ', cursorX, y);
-    cursorX += leftW;
-
-    ctx.font = ampFont;
-    ctx.fillText('&', cursorX, y);
-    cursorX += ampW;
-
-    ctx.font = serifFont;
-    ctx.fillText(' NURAIDA', cursorX, y);
-    ctx.textAlign = prevAlign;
+    const italicFont = `italic ${sizePx}px "Seasons Italic", "The Seasons", "Cormorant Garamond", Georgia, serif`;
+    ctx.font = italicFont;
+    ctx.fillText('ERBOL & NURAIDA', centerX, y);
   }
 
   async function downloadStoryCardImage() {
