@@ -18,10 +18,9 @@ const WEDDING_CONFIG = {
     time: '18:00',
   },
   location: {
-    name: 'Bellagio Banquet Hall',
-    coords: [42.865308, 74.631984],
+    name: 'Bellagio Premium',
     zoom: 15,
-    twoGisUrl: 'https://2gis.kg/bishkek/firm/70000001035315188',
+    twoGisUrl: 'https://2gis.kg/bishkek/firm/70000001047984986',
   },
   music: {
     src: 'assets/audio/wedding-melody.mp3?v=2',
@@ -47,7 +46,7 @@ const WEDDING_CONFIG = {
       addCalendarBtn: 'КАЛЕНДАРГА КОШУУ',
       addCalendarDone: 'КАЛЕНДАРГА КОШУЛДУ ✓',
       calendarEventTitle: 'Erbol & Nuraida — Үлпөт той',
-      calendarEventDesc: 'Эрбол & Нураиданын үлпөт тою. Bellagio Banquet Hall, Бишкек ш., Лев Толстой көч., 36к/1',
+      calendarEventDesc: 'Эрбол & Нураиданын үлпөт тою. Bellagio Premium, Бишкек ш., Токтогул көч., 125/1 (БЦ Avangard)',
       countdownEyebrow: 'ТОЙГО ЧЕЙИН',
       countdownHeading: 'калды',
       countdownStartedHeading: 'башталды!',
@@ -56,8 +55,8 @@ const WEDDING_CONFIG = {
       cdMins: 'мүнөт',
       cdSecs: 'секунд',
       locationHeading: 'ТОЙДУН ДАРЕГИ',
-      locationName: 'Bellagio Banquet Hall',
-      locationAddress: 'Бишкек ш., Лев Толстой көч., 36к/1',
+      locationName: 'Bellagio Premium',
+      locationAddress: 'Бишкек ш., Токтогул көч., 125/1 (БЦ Avangard)',
       locationBtn: 'КАРТАДАН КӨРҮҮ',
       dresscodeHeading: 'ДРЕСС',
       dresscodeHeadingScript: 'код',
@@ -124,7 +123,7 @@ const WEDDING_CONFIG = {
       wishAddedToast: 'Тилегиңиз кошулду ✓',
       shareStoryHint: 'Даяр сүрөттү жүктөп алып, жакындарыңыз менен же Instagram Story аркылуу бөлүшсөңүз болот.',
       shareMessageText:
-        'Эрбол & Нураида — Үлпөт тойго чакыруу! 03.12.2026, саат 18:00, Bellagio Banquet Hall (Бишкек).',
+        'Эрбол & Нураида — Үлпөт тойго чакыруу! 03.12.2026, саат 18:00, Bellagio Premium (Бишкек).',
       footerHeading: 'СИЗДЕРДИ КУБАНЫЧ МЕНЕН КҮТӨБҮЗ!',
       backToTopBtn: 'БАШЫНА КАЙТУУ ↑',
       musicPlayLabel: 'Музыканы күйгүзүү',
@@ -151,7 +150,7 @@ const WEDDING_CONFIG = {
       addCalendarBtn: 'ДОБАВИТЬ В КАЛЕНДАРЬ',
       addCalendarDone: 'ДОБАВЛЕНО В КАЛЕНДАРЬ ✓',
       calendarEventTitle: 'Erbol & Nuraida — Свадьба',
-      calendarEventDesc: 'Свадебное торжество Эрбола и Нураиды. Bellagio Banquet Hall, г. Бишкек, ул. Льва Толстого, 36к/1',
+      calendarEventDesc: 'Свадебное торжество Эрбола и Нураиды. Bellagio Premium, г. Бишкек, ул. Токтогула, 125/1 (БЦ Avangard)',
       countdownEyebrow: 'ДО СВАДЬБЫ',
       countdownHeading: 'осталось',
       countdownStartedHeading: 'началось!',
@@ -160,8 +159,8 @@ const WEDDING_CONFIG = {
       cdMins: 'минут',
       cdSecs: 'секунд',
       locationHeading: 'ЛОКАЦИЯ',
-      locationName: 'Bellagio Banquet Hall',
-      locationAddress: 'г. Бишкек, ул. Льва Толстого, 36к/1',
+      locationName: 'Bellagio Premium',
+      locationAddress: 'г. Бишкек, ул. Токтогула, 125/1 (БЦ Avangard)',
       locationBtn: 'ПЕРЕЙТИ НА КАРТУ',
       dresscodeHeading: 'ДРЕСС',
       dresscodeHeadingScript: 'код',
@@ -228,7 +227,7 @@ const WEDDING_CONFIG = {
       wishAddedToast: 'Ваше пожелание добавлено ✓',
       shareStoryHint: 'Скачайте готовую карточку, чтобы отправить близким или опубликовать в Instagram Story.',
       shareMessageText:
-        'Erbol & Nuraida — Приглашение на свадьбу! 03.12.2026 в 18:00, Bellagio Banquet Hall (г. Бишкек).',
+        'Erbol & Nuraida — Приглашение на свадьбу! 03.12.2026 в 18:00, Bellagio Premium (г. Бишкек).',
       footerHeading: 'ДО ВСТРЕЧИ НА НАШЕМ ПРАЗДНИКЕ!',
       backToTopBtn: 'ВЕРНУТЬСЯ НАВЕРХ ↑',
       musicPlayLabel: 'Включить музыку',
@@ -953,7 +952,7 @@ const WEDDING_CONFIG = {
         ctx.font = '36px Forum, "Cormorant Garamond", Georgia, serif';
         ctx.fillText('03.12.2026 • 18:00', W / 2, H - 235);
         ctx.font = '30px Forum, "Cormorant Garamond", Georgia, serif';
-        ctx.fillText('BELLAGIO BANQUET HALL', W / 2, H - 180);
+        ctx.fillText('BELLAGIO PREMIUM', W / 2, H - 180);
       }
 
       const link = document.createElement('a');
