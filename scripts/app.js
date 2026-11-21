@@ -7,6 +7,7 @@ const WEDDING_CONFIG = {
     heroCaps: 'ERBOL & NURAIDA',
     whatsappPhone: '', // Optional: e.g. '996700000000'
   },
+  shareUrl: 'https://neulpottoi.vercel.app/',
   rsvpEndpoint: '', // Optional: Formspree / Google Apps Script / Telegram webhook URL
   date: {
     day: '03',
@@ -117,14 +118,17 @@ const WEDDING_CONFIG = {
       shareCoverTop: 'ҮЛПӨТ ТОЙ',
       shareCoverMonth: 'ДЕКАБРЬ',
       shareCoverMeta: '2026 • СААТ 18:00',
-      shareInviteTop: 'ҮЛПӨТ ТОЙ • БИШКЕК',
+      shareInviteTop: 'ҮЛПӨТ ТОЙГО ЧАКЫРУУ',
       shareInviteBody: 'Сиздерди биздин үлпөт тоюбуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз',
       shareDownloadBtn: 'СҮРӨТТҮ САКТОО',
       shareSavedToast: 'Сүрөт сакталды! Instagram Story’ге жүктөңүз ✓',
+      instagramShareHint: 'Instagram → Story тандаңыз. Шилтеме көчүрүлдү — «Шилтеме» чаптамасына чаптаңыз.',
+      instagramFallbackHint: 'Сүрөт жүктөлдү. Instagram Story’ге кошуп, «Шилтеме» чаптамасына көчүрүлгөн даректи чаптаңыз.',
+      instagramCopyHint: 'Story’ге «Шилтеме» чаптамасын кошуу үчүн «Шилтемени көчүрүү» баскычын колдонуңуз.',
       shareCopyBtn: 'ШИЛТЕМЕНИ КӨЧҮРҮҮ',
       shareCopiedBtn: 'ШИЛТЕМЕ КӨЧҮРҮЛДҮ ✓',
       wishAddedToast: 'Тилегиңиз кошулду ✓',
-      shareStoryHint: 'Даяр сүрөттү жүктөп алып, жакындарыңыз менен же Instagram Story аркылуу бөлүшсөңүз болот.',
+      shareStoryHint: 'Instagram баскычын басып, телефондун бөлүшүү менюсунан Instagram → Story тандаңыз. Чакыруунун шилтемесин Story’деги «Шилтеме» чаптамасына кошуңуз.',
       shareMessageText:
         'Эрбол & Нураида — Үлпөт тойго чакыруу! 03.12.2026, саат 18:00, Bellagio Premium (Бишкек).',
       footerHeading: 'СИЗДЕРДИ КУБАНЫЧ МЕНЕН КҮТӨБҮЗ!',
@@ -224,14 +228,17 @@ const WEDDING_CONFIG = {
       shareCoverTop: 'СВАДЕБНОЕ ТОРЖЕСТВО',
       shareCoverMonth: 'ДЕКАБРЯ',
       shareCoverMeta: '2026 • В 18:00',
-      shareInviteTop: 'СВАДЬБА • БИШКЕК',
+      shareInviteTop: 'ПРИГЛАШЕНИЕ НА СВАДЬБУ',
       shareInviteBody: 'С любовью приглашаем Вас разделить с нами радость нашего свадебного вечера',
       shareDownloadBtn: 'СОХРАНИТЬ ФОТО',
       shareSavedToast: 'Фото сохранено! Загрузите в Instagram Story ✓',
+      instagramShareHint: 'Выберите Instagram → История. Ссылка скопирована — вставьте её в стикер «Ссылка».',
+      instagramFallbackHint: 'Изображение скачано. Добавьте его в историю Instagram и вставьте скопированный адрес в стикер «Ссылка».',
+      instagramCopyHint: 'Нажмите «Копировать ссылку», чтобы добавить адрес в стикер «Ссылка» в истории.',
       shareCopyBtn: 'СКОПИРОВАТЬ ССЫЛКУ',
       shareCopiedBtn: 'ССЫЛКА СКОПИРОВАНА ✓',
       wishAddedToast: 'Ваше пожелание добавлено ✓',
-      shareStoryHint: 'Скачайте готовую карточку, чтобы отправить близким или опубликовать в Instagram Story.',
+      shareStoryHint: 'Нажмите Instagram и выберите Instagram → История в меню телефона. Ссылку на приглашение добавьте через стикер «Ссылка» в истории.',
       shareMessageText:
         'Erbol & Nuraida — Приглашение на свадьбу! 03.12.2026 в 18:00, Bellagio Premium (г. Бишкек).',
       footerHeading: 'ДО ВСТРЕЧИ НА НАШЕМ ПРАЗДНИКЕ!',
@@ -831,9 +838,13 @@ const WEDDING_CONFIG = {
   /* ------------------------------------------------------------------------
      SHARE INVITATION SECTION (LAST PAGE: TABS, STORY DOWNLOAD, LINKS)
      ------------------------------------------------------------------------ */
+  function getInvitationShareUrl() {
+    return WEDDING_CONFIG.shareUrl || new URL(window.location.pathname, window.location.origin).href;
+  }
+
   function updateSocialShareLinks() {
     const t = WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg;
-    const shareUrl = window.location.href;
+    const shareUrl = getInvitationShareUrl();
     const fullText = `${t.shareMessageText} ${shareUrl}`;
 
     const waBtn = document.getElementById('share-wa-btn');
@@ -888,6 +899,7 @@ const WEDDING_CONFIG = {
   }
 
   const storyImageCache = new Map();
+  const storyShareFiles = new Map();
 
   function loadStoryImage(src) {
     if (!storyImageCache.has(src)) {
@@ -1009,6 +1021,9 @@ const WEDDING_CONFIG = {
       renderStoryCard(kind, lang).then((canvas) => {
         if (lang !== currentLang) return;
         target.getContext('2d').drawImage(canvas, 0, 0);
+        canvas.toBlob((blob) => {
+          if (blob) storyShareFiles.set(lang + ':' + kind, new File([blob], 'erbol-nuraida-' + kind + '.png', { type: 'image/png' }));
+        }, 'image/png');
       }).catch((error) => console.error('Story preview failed:', error));
     });
   }
@@ -1031,6 +1046,48 @@ const WEDDING_CONFIG = {
     } catch (error) {
       console.error('Story image download failed:', error);
     }
+  }
+
+  function copyInvitationLink() {
+    const url = getInvitationShareUrl();
+    if (navigator.clipboard?.writeText) {
+      return navigator.clipboard.writeText(url).then(() => true, () => false);
+    }
+    const field = document.createElement('textarea');
+    field.value = url;
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.appendChild(field);
+    field.select();
+    let copied = false;
+    try { copied = document.execCommand('copy'); } catch (_) {}
+    field.remove();
+    return Promise.resolve(copied);
+  }
+
+  async function shareStoryToInstagram() {
+    const t = WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg;
+    const file = storyShareFiles.get(currentLang + ':' + activeShareTab);
+    // Begin copying during the tap, without delaying the native share invocation.
+    const copyPromise = copyInvitationLink();
+    const hint = document.getElementById('share-story-hint');
+    let canShare = false;
+    try { canShare = Boolean(file && navigator.canShare?.({ files: [file] }) && navigator.share); } catch (_) {}
+    if (canShare) {
+      try {
+        await navigator.share({ files: [file], title: 'Erbol & Nuraida', text: getInvitationShareUrl() });
+        const copied = await copyPromise;
+        const message = copied ? t.instagramShareHint : t.instagramCopyHint;
+        if (hint) hint.textContent = message;
+        return;
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+        // Unsupported or blocked system sharing still offers the selected image.
+      }
+    }
+    await downloadStoryCardImage();
+    const copied = await copyPromise;
+    if (hint) hint.textContent = copied ? t.instagramFallbackHint : t.instagramCopyHint;
   }
 
   function initShareSection() {
@@ -1061,22 +1118,14 @@ const WEDDING_CONFIG = {
     }
 
     if (igBtn) {
-      igBtn.addEventListener('click', downloadStoryCardImage);
+      igBtn.addEventListener('click', shareStoryToInstagram);
     }
 
     if (copyBtn) {
       copyBtn.addEventListener('click', async () => {
         const t = WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg;
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-        } catch (_) {
-          const temp = document.createElement('input');
-          temp.value = window.location.href;
-          document.body.appendChild(temp);
-          temp.select();
-          document.execCommand('copy');
-          document.body.removeChild(temp);
-        }
+        const copied = await copyInvitationLink();
+        if (!copied) { showToast(t.instagramCopyHint); return; }
         copyBtn.textContent = t.shareCopiedBtn;
         window.setTimeout(() => {
           copyBtn.textContent = (WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg).shareCopyBtn;
