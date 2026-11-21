@@ -911,7 +911,7 @@ const WEDDING_CONFIG = {
       const drawW = img.width * scale;
       const drawH = img.height * scale;
       const offsetX = (W - drawW) / 2;
-      const offsetY = (H - drawH) * (isCover ? 0.56 : 0.62);
+      const offsetY = (H - drawH) * (isCover ? 0.56 : 0.40);
       ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
       ctx.filter = 'none';
 
