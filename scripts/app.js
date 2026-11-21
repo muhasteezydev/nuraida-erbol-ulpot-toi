@@ -919,7 +919,7 @@ const WEDDING_CONFIG = {
     ctx.beginPath();
     ctx.rect(x, y, width, height);
     ctx.clip();
-    ctx.filter = 'grayscale(100%) contrast(1.06)';
+    // Final pixel conversion below works even where canvas filters are unsupported.
     ctx.drawImage(image, x + (width - image.width * scale) / 2, y + (height - image.height * scale) * positionY, image.width * scale, image.height * scale);
     ctx.restore();
   }
@@ -928,7 +928,7 @@ const WEDDING_CONFIG = {
     ctx.save();
     ctx.translate(x + width / 2, y + width / 2);
     ctx.rotate(angle * Math.PI / 180);
-    ctx.filter = 'saturate(.4) contrast(1.06)';
+
     ctx.shadowColor = 'rgba(35,33,30,.18)';
     ctx.shadowBlur = 15;
     ctx.shadowOffsetY = 12;
@@ -1010,6 +1010,16 @@ const WEDDING_CONFIG = {
       ctx.font = '34px Forum, Georgia, serif';
       ctx.fillText('18:00 · BELLAGIO PREMIUM', 540, 1800);
     }
+    // Bake monochrome pixels into both preview and export; mobile canvas filter support varies.
+    const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = frame.data;
+    for (let i = 0; i < pixels.length; i += 4) {
+      const gray = Math.round(pixels[i] * .2126 + pixels[i + 1] * .7152 + pixels[i + 2] * .0722);
+      pixels[i] = gray;
+      pixels[i + 1] = gray;
+      pixels[i + 2] = gray;
+    }
+    ctx.putImageData(frame, 0, 0);
     return canvas;
   }
 
