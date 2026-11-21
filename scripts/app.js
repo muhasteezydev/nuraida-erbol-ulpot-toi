@@ -889,7 +889,7 @@ const WEDDING_CONFIG = {
   async function downloadStoryCardImage() {
     const t = WEDDING_CONFIG.i18n[currentLang] || WEDDING_CONFIG.i18n.kg;
     const isCover = activeShareTab === 'cover';
-    const imgSrc = isCover ? 'assets/photos/photo-1.jpg' : 'assets/photos/photo-3.jpg';
+    const imgSrc = isCover ? 'assets/photos/photo-1.webp' : 'assets/photos/photo-3.webp';
 
     try {
       if (document.fonts?.ready) await document.fonts.ready;
