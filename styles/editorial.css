@@ -315,6 +315,7 @@ img,
 .wishes-track {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  align-items: flex-start;
 }
 
 .wishes-track::-webkit-scrollbar {
@@ -335,6 +336,29 @@ img,
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
+}
+
+.wish-card-text {
+  line-height: 1.55;
+  max-height: calc(1.55em * 6);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  flex-shrink: 0;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(255, 255, 255, 0.32) transparent;
+}
+
+.wish-card-text::-webkit-scrollbar {
+  display: block !important;
+  width: 3px !important;
+}
+
+.wish-card-text::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: 3px;
 }
 
 .wish-card::before {
