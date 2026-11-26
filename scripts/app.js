@@ -678,7 +678,8 @@ const WEDDING_CONFIG = {
       card.className = 'wish-card';
 
       const bodyP = document.createElement('p');
-      bodyP.className = 'font-body text-base leading-[1.55] text-white m-0 break-words';
+      bodyP.className = 'wish-card-text font-body text-base leading-[1.55] text-white m-0 break-words';
+      bodyP.tabIndex = 0;
       bodyP.textContent = item.text;
 
       const metaDiv = document.createElement('div');
